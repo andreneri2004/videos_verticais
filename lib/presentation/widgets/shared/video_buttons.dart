@@ -1,4 +1,6 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:videos_verticais/config/helpers/formats_values.dart';
 import 'package:videos_verticais/domain/entities/video_post.dart';
 
 class VideoButtons extends StatelessWidget {
@@ -14,9 +16,17 @@ class VideoButtons extends StatelessWidget {
           iconData: Icons.favorite,
           iconColor: Colors.red,
         ),
+        const SizedBox(height: 20),
         _CustomIconButton(
           value: video.views,
           iconData: Icons.remove_red_eye_outlined,
+        ),
+        const SizedBox(height: 20),
+        SpinPerfect(
+          child: _CustomIconButton(
+            value: 0, 
+            iconData: Icons.play_circle_outline,
+          ),
         ),
       ],
     );
@@ -42,7 +52,8 @@ class _CustomIconButton extends StatelessWidget {
           onPressed: () {},
           icon: Icon(iconData, color: color, size: 30),
         ),
-        Text("$value"),
+        if(value > 0  )
+        Text(FormatsValues.formatReadbleNumber(value.toDouble())),
       ],
     );
   }
