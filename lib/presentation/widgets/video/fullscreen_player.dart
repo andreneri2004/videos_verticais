@@ -39,47 +39,49 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
     return FutureBuilder(
       future: controller.initialize(),
       builder: (context, snapshort) {
-      
-      if (snapshort.connectionState != ConnectionState.done){
-        return const  Center(child: CircularProgressIndicator());
+        if (snapshort.connectionState != ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return GestureDetector(
+          onTap: () {
+            if (controller.value.isPlaying) {
+              controller.pause();
+              return;
+            }
+            controller.play();
+          },
+          child: AspectRatio(
+            aspectRatio: controller.value.aspectRatio,
+            child: Stack(
+              children: [
+                VideoPlayer(controller),
 
-      }
-      return AspectRatio(
-        aspectRatio: controller.value.aspectRatio,
-        child: Stack(
-          children: [
-            VideoPlayer(controller),
-
-            Positioned(
-              bottom: 50,
-              left: 50,
-              child: _VideoCaption(caption: widget.caption)
-              )
-          ],
-        ),
+                Positioned(
+                  bottom: 50,
+                  left: 50,
+                  child: _VideoCaption(caption: widget.caption),
+                ),
+              ],
+            ),
+          ),
         );
-      
-      
-    });
+      },
+    );
   }
 }
 
 class _VideoCaption extends StatelessWidget {
-
   final String caption;
-  const _VideoCaption({super.key, required this.caption});
-
-
+  const _VideoCaption({required this.caption});
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
     final titleStyle = Theme.of(context).textTheme.titleLarge;
 
     return SizedBox(
-      width: size.width * 0.6,//60%
-      child: Text(caption, style: titleStyle,),
+      width: size.width * 0.6, //60%
+      child: Text(caption, maxLines: 2, style: titleStyle),
     );
   }
 }
