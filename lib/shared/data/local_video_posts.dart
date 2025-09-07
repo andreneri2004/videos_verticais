@@ -24,7 +24,7 @@ List<Map<String, dynamic>> videoPosts = [
     'views': 2300,
   },
   {
-    'name': 'Época de COVID, ainda bem que acabou',
+    'name': 'Época de COVID, ainda bem que acabou não é André',
     'videoUrl': 'assets/videos/5.mp4',
     'likes': 3230,
     'views': 31030,
