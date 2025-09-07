@@ -78,4 +78,11 @@ flutter run
 
 📌 Status do Projeto
 
+
+## 📷 Demonstração
+
+![Tela inicial](videos_verticais/assets/screenshots/Captura3.png)
+![Navegação entre telas](videos_verticais/assets/screenshots/Captura1.png)
+
+
 🚧 Em desenvolvimento | Foco: aprendizado contínuo em Flutter 🚀
